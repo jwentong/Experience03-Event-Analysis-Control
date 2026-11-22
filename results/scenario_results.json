@@ -1,0 +1,54 @@
+{
+  "scenarios": [
+    {
+      "scenario": "normal_bidirectional",
+      "passed": true
+    },
+    {
+      "scenario": "release_1001",
+      "passed": true
+    },
+    {
+      "scenario": "release_1002",
+      "passed": true
+    },
+    {
+      "scenario": "INVALID",
+      "passed": true
+    },
+    {
+      "scenario": "SELF_CALL",
+      "passed": true
+    },
+    {
+      "scenario": "USER_BUSY",
+      "passed": true
+    },
+    {
+      "scenario": "DIAL_TIMEOUT",
+      "passed": true
+    },
+    {
+      "scenario": "NO_ANSWER",
+      "passed": true
+    },
+    {
+      "scenario": "cancel_ringing",
+      "passed": true
+    },
+    {
+      "scenario": "stale_timer",
+      "passed": true
+    },
+    {
+      "scenario": "duplicate_sample",
+      "passed": true
+    },
+    {
+      "scenario": "reuse_after_release",
+      "passed": true
+    }
+  ],
+  "passed": 12,
+  "total": 12
+}
