@@ -1,5 +1,24 @@
-"""学生任务：四位号码；合法前缀返回INCOMPLETE，完整合法号LOCAL，自己的号SELF_CALL；非法字符、无匹配前缀、超过四位INVALID。"""
+"""号码分析与拨号计划匹配。"""
 
-def analyze_number(digits,dial_plan,caller):
-    """四位号码；合法前缀返回INCOMPLETE，完整合法号LOCAL，自己的号SELF_CALL；非法字符、无匹配前缀、超过四位INVALID。"""
-    raise NotImplementedError("请补全本任务")
+
+def analyze_number(digits, dial_plan, caller):
+    """按四位拨号计划判定号码是前缀、本地号、自呼或非法号码。"""
+    if not isinstance(digits, str) or len(digits) > 4:
+        return "INVALID"
+    if any(char < "0" or char > "9" for char in digits):
+        return "INVALID"
+
+    valid_numbers = [
+        number
+        for number in dial_plan
+        if isinstance(number, str)
+        and len(number) == 4
+        and all("0" <= char <= "9" for char in number)
+    ]
+    if not any(number.startswith(digits) for number in valid_numbers):
+        return "INVALID"
+    if len(digits) < 4:
+        return "INCOMPLETE"
+    if digits == caller:
+        return "SELF_CALL"
+    return "LOCAL"
