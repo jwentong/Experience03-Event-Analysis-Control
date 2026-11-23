@@ -1,5 +1,17 @@
-"""学生任务：按用户编号排序返回{user,kind}列表；0→1为OFFHOOK，1→0为ONHOOK，相同不产生事件。集合不一致或值非0/1抛ValueError。"""
+"""Hook transition detection for the event-driven exchange."""
 
-def detect_hook_events(previous,current):
-    """按用户编号排序返回{user,kind}列表；0→1为OFFHOOK，1→0为ONHOOK，相同不产生事件。集合不一致或值非0/1抛ValueError。"""
-    raise NotImplementedError("请补全本任务")
+
+def detect_hook_events(previous, current):
+    """Return sorted OFFHOOK/ONHOOK transitions between two hook snapshots."""
+    if set(previous) != set(current):
+        raise ValueError("previous and current users must match")
+    for snapshot in (previous, current):
+        if any(value not in (0, 1) for value in snapshot.values()):
+            raise ValueError("hook values must be 0 or 1")
+
+    events = []
+    for user in sorted(previous):
+        before, after = previous[user], current[user]
+        if before != after:
+            events.append({"user": user, "kind": "OFFHOOK" if after else "ONHOOK"})
+    return events
